@@ -11,7 +11,8 @@ jobs:
     executor: docker/docker
     steps:
       - setup_remote_docker
-      - checkout
+      - checkout:
+          path: ~/project
       - docker/check
       - docker/build:
           image: mbuzi/mbuzi-cicd
@@ -19,7 +20,8 @@ jobs:
     executor: docker/docker
     steps:
       - setup_remote_docker
-      - checkout
+      - checkout:
+          path: ~/project
       - docker/check
       - docker/build:
           image: mbuzi/mbuzi-cicd

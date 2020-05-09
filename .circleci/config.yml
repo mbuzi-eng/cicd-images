@@ -26,9 +26,10 @@ jobs:
       - docker/check
       - docker/build:
           dockerfile: sls-base/Dockerfile
-          image: mbuzi/mbuzi-cicd:v0.0.1
+          image: mbuzi/mbuzi-cicd
       - docker/push:
-          image: mbuzi/mbuzi-cicd:v0.0.1
+          image: mbuzi/mbuzi-cicd
+          tag: v0.0.1
 
 
 workflows:

@@ -10,24 +10,24 @@ jobs:
   build:
     executor: docker/docker
     steps:
-      - checkout:
+      - checkout
       - docker/check
       - docker/build:
           image: mbuzi/mbuzi-cicd:v0.0.1
-  build-push:
+  deploy:
     executor: docker/docker
     steps:
-      - checkout:
-        - docker/check
-        - docker/build:
-            image: mbuzi/mbuzi-cicd:v0.0.1
-        - docker/push:
-            image: mbuzi/mbuzi-cicd:v0.0.1
+      - checkout
+      - docker/check
+      - docker/build:
+          image: mbuzi/mbuzi-cicd:v0.0.1
+      - docker/push:
+          image: mbuzi/mbuzi-cicd:v0.0.1
 
 
 workflows:
   version: 2.1
-  build_push_image:
+  build_deploy:
     jobs:
       - build:
           context: context-mbuzi-dev
@@ -36,7 +36,7 @@ workflows:
               only: /.*/
             branches:
               only: /.*/
-      - build-push:
+      - deploy:
           context: context-mbuzi-dev
           requires:
             - build

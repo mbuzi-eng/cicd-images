@@ -10,15 +10,12 @@ jobs:
   build-deploy:
     executor: docker/docker
     steps:
-      - setup_remote_docker
       - checkout:
           path: ~/project
       - docker/check
-      - docker/build:
-          dockerfile: sls-base/Dockerfile
+      - docker/publish:
+          path: sls-base
           image: mbuzi/mbuzi-cicd:v0.0.1
-      - docker/push:
-          image: mbuzi/mbuzi-cicd
           tag: v0.0.1
 
 workflows:

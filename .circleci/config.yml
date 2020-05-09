@@ -13,16 +13,16 @@ jobs:
       - checkout
       - docker/check
       - docker/build:
-          image: mbuzi/mbuzi-cicd:v0.0.1
+          image: mbuzi/mbuzi-cicd
   deploy:
     executor: docker/docker
     steps:
       - checkout
       - docker/check
       - docker/build:
-          image: mbuzi/mbuzi-cicd:v0.0.1
+          image: mbuzi/mbuzi-cicd
       - docker/push:
-          image: mbuzi/mbuzi-cicd:v0.0.1
+          image: mbuzi/mbuzi-cicd
 
 
 workflows:

@@ -15,6 +15,7 @@ jobs:
           path: ~/project
       - docker/check
       - docker/build:
+          dockerfile: sls-base/Dockerfile
           image: mbuzi/mbuzi-cicd
   deploy:
     executor: docker/docker
@@ -24,6 +25,7 @@ jobs:
           path: ~/project
       - docker/check
       - docker/build:
+          dockerfile: sls-base/Dockerfile
           image: mbuzi/mbuzi-cicd
       - docker/push:
           image: mbuzi/mbuzi-cicd

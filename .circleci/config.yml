@@ -27,8 +27,6 @@ workflows:
     jobs:
       - build-deploy:
           context: context-mbuzi-dev
-          requires:
-            - build
           filters:
             tags:
               only: /(^v\d+.*)/

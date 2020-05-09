@@ -10,6 +10,7 @@ jobs:
   build:
     executor: docker/docker
     steps:
+      - setup_remote_docker
       - checkout
       - docker/check
       - docker/build:
@@ -17,6 +18,7 @@ jobs:
   deploy:
     executor: docker/docker
     steps:
+      - setup_remote_docker
       - checkout
       - docker/check
       - docker/build:

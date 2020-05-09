@@ -7,17 +7,7 @@ orbs:
   docker: circleci/docker@1.0.1
 
 jobs:
-  build:
-    executor: docker/docker
-    steps:
-      - setup_remote_docker
-      - checkout:
-          path: ~/project
-      - docker/check
-      - docker/build:
-          dockerfile: sls-base/Dockerfile
-          image: mbuzi/mbuzi-cicd
-  deploy:
+  build-deploy:
     executor: docker/docker
     steps:
       - setup_remote_docker
@@ -31,19 +21,11 @@ jobs:
           image: mbuzi/mbuzi-cicd
           tag: v0.0.1
 
-
 workflows:
   version: 2.1
   build_deploy:
     jobs:
-      - build:
-          context: context-mbuzi-dev
-          filters:
-            tags:
-              only: /.*/
-            branches:
-              only: /.*/
-      - deploy:
+      - build-deploy:
           context: context-mbuzi-dev
           requires:
             - build

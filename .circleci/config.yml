@@ -1,0 +1,30 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/buildpack-deps:stretch
+    steps:
+      - checkout:
+          path: ~/project
+      - run:
+          name: Build
+          command: make --directory sls-base image
+      - run:
+          name: Push
+          command: make --directory sls-base push
+
+workflows:
+  version: 2.1
+  build_test:
+    jobs:
+      - build:
+          context: context-mbuzi-dev
+          filters:
+            tags:
+              only: /.*/
+            branches:
+              only: /(^master)|(^dev)/
